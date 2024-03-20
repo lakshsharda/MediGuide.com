@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Service Section</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "poppins";
+        }
+
+        .Container {
+            min-height: 100vh;
+            width: 100%;
+            background-color: #4c89a3;
+        }
+
+        .service-wrapper {
+            padding: 5% 8%;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .service {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 5rem;
+            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-color: transparent;
+            letter-spacing: 4px;
+            background-color: rgb(4, 52, 83);
+            background: linear-gradient(8deg, rgb(53, 102, 116) 0%, rgb(68, 106, 124) 41%, rgb(10, 62, 97) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        h1:after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 10%;
+            height: 8px;
+            width: 80%;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        h1 span {
+            position: absolute;
+            top: 100%;
+            left: 10%;
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            background-color: #72e272;
+            animation: anim 5s linear infinite;
+        }
+
+        @keyframes anim {
+            95% {
+                opacity: 1%;
+            }
+
+            100% {
+                opacity: 0;
+                left: 88%;
+            }
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Default: 3 columns */
+            gap: 30px;
+            margin-top: 80px;
+        }
+
+        .card {
+            height: 330px;
+            width: 370px;
+            background-color: #1c2335;
+            padding: 3% 8%;
+            border: 0.2px solid rgba(114, 226, 174, 0.2);
+            border-radius: 8px;
+            transition: .6s;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .card:after {
+            content: "";
+            position: absolute;
+            top: 150%;
+            left: -200px;
+            width: 120%;
+            transform: rotate(50deg);
+            background-color: #fff;
+            height: 18px;
+            filter: blur(30px);
+            opacity: 0.5;
+            transition: 1s;
+        }
+
+        .card:hover:after {
+            width: 225%;
+            top: -100%;
+        }
+
+        .card i {
+            color: #72e2ae;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 4.8rem;
+        }
+
+        .card h2 {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .card p {
+            text-align: center;
+            width: 100%;
+            margin: 12px 0;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .card:hover {
+            background-color: transparent;
+            transform: translateY(-8px);
+            border-color: #00ff37;
+        }
+
+        .card:hover i {
+            color: #00ff37;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns for screens less than 1200px wide */
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            .cards {
+                grid-template-columns: repeat(1, 1fr); /* 1 column for screens less than 900px wide */
+            }
+
+            h1 {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+
+</style>
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Service Section </title>
+    <!-- <link rel="stylesheet" href = "C:\Users\Aditya Chawla\Desktop\contact\Services\style.css"> -->
+    <!-- <link rel="stylesheet" href="C:\Users\Aditya Chawla\Desktop\contact\Services\style.css"> -->
+
+
+</head>
+<body>
+    <div class="Container">
+        <div class="service-wrapper">
+            <div class="service">
+                <h1>Our Services <span></span></h1>
+                <div class="cards">
+                    <div class="card">
+                        <i class="fa-brands fa-chromecast"></i>
+                        <h2>Search for Medicines</h2>
+                        <p>Your one-stop destination for finding the medications you need with ease and efficiency. Our user-friendly search function allows you to quickly locate specific medicines by name, category, or condition, streamlining the process of managing your healthcare needs. </p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h2>Consult Top Doctors</h2>
+                        <p>Your gateway to premium healthcare expertise. Our platform connects you with renowned specialists across various medical fields, ensuring you receive the highest quality of care and personalized attention.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-user-group"></i>
+                        <h2>Symtoms</h2>
+                        <p>Pivotal section of our website dedicated to helping users identify and understand various health indicators. Whether it's a mild discomfort or a concerning ailment, this platform offers valuable insights into common symptoms, their potential causes, and recommended courses of action.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-brands fa-desktop"></i>
+                        <h2>Order Medicines</h2>
+                        <p>Convenient and reliable service offered by our website, designed to streamline the process of acquiring essential medications. With just a few clicks, users can browse through a comprehensive selection of pharmaceutical products, ranging from over-the-counter remedies to prescription medications.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-brands fa-camera"></i>
+                        <h2>Medical Information</h2>
+                        <p> Your comprehensive resource for accurate and reliable healthcare knowledge. Explore our curated collection of articles, guides, and resources covering a wide range of medical topics, from common ailments to complex conditions. </p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-brands fa-gear"></i>
+                        <h2>Others</h2>
+                        <p>Discover a wealth of content spanning wellness tips, lifestyle advice, community support networks, and much more. From mental health resources to alternative therapies, explore avenues for holistic well-being and personal growth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

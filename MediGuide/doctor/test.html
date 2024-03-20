@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctors Page</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: #f8f8f8;
+    }
+
+    #doctorList {
+      width: 25%;
+      min-width: 300px;
+      height: 100vh;
+      background-color: #4c89a3;
+      padding: 20px;
+      box-sizing: border-box;
+      color: white;
+    }
+
+    #doctorDetails {
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      background: linear-gradient(to right, #88addd, #0e4785);
+      font-weight: 500;
+    }
+
+    #detailsContainer img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    #detailsContainer h3 {
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      cursor: pointer;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      background-color: #4c89a3;
+      padding: 10px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    li img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    li:hover {
+      background-color: #0066cc;
+    }
+
+    li h5 {
+      margin: 0;
+      color: white;
+      font-size: 18px;
+    }
+
+    button {
+      background: linear-gradient(to right, #4e94f3, #327ac7);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #47d015, #2dc272);
+    }
+
+    .search {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .search-input {
+      width: calc(100% - 32px);
+      padding: 10px;
+      border: none;
+      border-radius: 20px;
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    .material-symbols-outlined {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      color: #ccc;
+      font-size: 20px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1b1871;
+    }
+
+    p {
+      color: #333;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    form {
+      background-color: #f2f2f2;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    #detailsContainer {
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-message {
+      background-color: #45a049;
+      color: white;
+      padding: 20px;
+      border-radius: 5px;
+      animation: fadeInOut 3s ease;
+    }
+
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+      }
+      25% {
+        opacity: 1;
+      }
+      75% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .confirmation-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 9999;
+    }
+
+    .confirmation-content {
+      text-align: center;
+      color: white;
+    }
+
+    .confirmation-content p {
+      margin-bottom: 10px;
+    }
+
+    .confirmation-content button {
+      background: linear-gradient(to right, #4e94f3, #327ac7);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .confirmation-content button:hover {
+      background: linear-gradient(to right, #47d015, #2dc272);
+    }
+    .confirmation-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 9999;
+}
+#Find{
+  color: white;
+}
+  </style>
+</head>
+<body>
+  
+  <div id="doctorList">
+    <h2 id="Find">Find Your Specialist </h2>
+    <div class="search">
+      <input class="search-input" type="search" placeholder="Search Doctors" oninput="filterDoctors(this.value)">
+      <span class="material-symbols-outlined"></span>
+    </div>
+  
+    <ul id="list">
+      <li onclick="showProfile('Dr. Ajaya Nand Jha', 'profile_pic_1.jpg', 'Neurologist', 'DrAjayaNandJha@example.com', '123-456-7890')"> 
+        <img src="https://safemedtrip.com/images/doctors/dr-ajay-nanda-jha-medanta.jpg" alt="Dr.AjayaNandJha">
+        <h5>Dr. Ajaya Nand Jha</h5>
+      </li>
+      <li onclick="showProfile('Dr. Suresh Joshi', 'profile_pic_2.jpg', 'Cardiologist', 'DrSureshJoshi@example.com', '987-654-3210')"> 
+        <img src="https://jaslokhospital.net/uploads/images/staff/23fef1eef01d4543cc50d9a5403383c7.jpg" alt="Dr. Suresh Joshi">
+        <h5 class="doctor-name">Dr. Suresh Joshi</h5>
+      </li>
+      <li onclick="showProfile('Dr. Abhijit Dey', 'profile_pic_3.jpg', 'Orthopedic Surgeon', 'Dr.AbhijitDey@example.com', '555-123-4567')"> 
+        <img src="https://safemedtrip.com/images/doctors/orthopedic/dr-abhijit-dey-orthopedic.jpg" alt="Dr. Abhijit Dey">
+        <h5 class="doctor-name">Dr. Abhijit Dey</h5>
+      </li>
+    </ul>
+  </div>
+
+  <div id="doctorDetails">
+    <h2>Doctor Details</h2>
+    <div id="detailsContainer">
+      <!-- Doctor details including profile picture will be displayed here -->
+    </div>
+  </div>
+
+  <script>
+    function showProfile(doctorName, profilePic, specialization, email, phone) {
+      var detailsContainer = document.getElementById('detailsContainer');
+      switch (doctorName) {
+        case 'Dr. Ajaya Nand Jha':
+          detailsContainer.innerHTML = `
+          <img src="https://safemedtrip.com/images/doctors/dr-ajay-nanda-jha-medanta.jpg" alt="Dr. Ajaya Nand Jha">
+          <h3>Dr. Ajaya Nand Jha </h3>
+            <p><strong>Description:</strong> Dr Ajaya Nand Jha is one of the most skilled & respected neuro surgeons in India. With an experience of over 33 years, he is a pioneer in getting Intra-Operative MRI technology for brain tumour surgeries in India. Dr. Ajaya Nand Jha is the Chairman at Institute of Neurosciences Medanta Hospital, Gurgaon/Gurugram.</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <button onclick="openAppointmentForm('${doctorName}')">Book Appointment</button>
+          `;
+          break;
+        case 'Dr. Suresh Joshi':
+          detailsContainer.innerHTML = `
+          <img src="https://jaslokhospital.net/uploads/images/staff/23fef1eef01d4543cc50d9a5403383c7.jpg" alt="Dr. Suresh Joshi">
+          <h3 class="doctor-name">Dr. Suresh Joshi</h3>
+            <p><strong>Description:</strong> Dr. Suresh Joshi is a renowned Cardiologist with extensive experience in treating cardiovascular diseases. He has successfully performed numerous cardiac surgeries and is known for his expertise in the field.</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <button onclick="openAppointmentForm('${doctorName}')">Book Appointment</button>
+          `;
+          break;
+        case 'Dr. Abhijit Dey':
+          detailsContainer.innerHTML = `
+          <img src="https://safemedtrip.com/images/doctors/orthopedic/dr-abhijit-dey-orthopedic.jpg" alt="Dr. Abhijit Dey">
+          <h3 class="doctor-name">Dr. Abhijit Dey</h3>
+            <p><strong>Description:</strong> Dr. Abhijit Dey is a highly skilled Orthopedic Surgeon specializing in orthopedic surgeries. With years of experience, he has successfully treated patients with various orthopedic conditions and is recognized for his dedication to patient care.</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <button onclick="openAppointmentForm('${doctorName}')">Book Appointment</button>
+          `;
+          break;
+        default:
+          detailsContainer.innerHTML = ''; // Clear details if no match
+      }
+    }
+    
+
+    function openAppointmentForm(doctorName) {
+      var appointmentForm = `
+        <h2>Fill the Form</h2>
+        <form>
+          <label for="name">Name:</label><br>
+          <input type="text" id="name" name="name" required><br><br>
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email" required><br><br>
+          <label for="phone">Phone:</label><br>
+          <input type="tel" id="phone" name="phone" required><br><br>
+          <label for="date">Date:</label><br>
+          <input type="date" id="date" name="date" required><br><br>
+          <label for="time">Time:</label><br>
+          <input type="time" id="time" name="time" required><br><br>
+          <label for="reason">Reason for Appointment:</label><br>
+          <textarea id="reason" name="reason" rows="4" cols="70" style="resize: vertical;" required></textarea><br>
+          <div class="book" style="text-align: center;"><button type="submit" onclick="bookAppointment('${doctorName}')">Confirm Appointment</button></div>
+        </form>
+      `;
+      document.getElementById('detailsContainer').innerHTML = appointmentForm;
+    }
+
+    function bookAppointment(doctorName) {
+      var successMessage = document.createElement('div');
+      // successMessage.classList.add('success-message');
+      // successMessage.textContent = 'Appointment booked with ' + doctorName;
+      document.body.appendChild(successMessage);
+
+      // Create confirmation popup
+      var confirmationPopup = document.createElement('div');
+      confirmationPopup.classList.add('confirmation-popup');
+      confirmationPopup.innerHTML = `
+        <div class="confirmation-content">
+          <p>Your appointment with ${doctorName} has been booked successfully!</p>
+          <button onclick="closeConfirmation()">Close</button>
+        </div>
+      `;
+      document.body.appendChild(confirmationPopup);
+    }
+
+    function closeConfirmation() {
+      var confirmationPopup = document.querySelector('.confirmation-popup');
+      confirmationPopup.remove();
+    }
+
+    function filterDoctors(searchTerm) {
+      var list = document.getElementById('list');
+      var doctors = list.getElementsByTagName('li');
+      
+      for (var i = 0; i < doctors.length; i++) {
+        var doctor = doctors[i];
+        var doctorName = doctor.querySelector('h5').innerText.toLowerCase();
+        
+        if (doctorName.includes(searchTerm.toLowerCase())) {
+          doctor.style.display = 'flex';
+        } else {
+          doctor.style.display = 'none';
+        }
+      }
+    }
+    
+  </script>
+</body>
+</html>

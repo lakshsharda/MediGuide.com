@@ -1,0 +1,33 @@
+.tab-btn {
+    background-color: #f1f1f1;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab-btn:hover {
+    background-color: #ddd;
+}
+
+.tab-btn.active {
+    background-color: #ccc;
+}
+
+.tab-text {
+    display: none;
+    padding: 6px 8px;
+    border-top: none;
+}
+.about-image {
+    width: 50%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}

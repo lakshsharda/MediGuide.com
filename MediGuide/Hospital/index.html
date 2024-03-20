@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Nearby Hospitals</title>
+</head>
+<body>
+    <h1>Find Nearby Hospitals</h1>
+    
+    <div id="hospitalList">
+        <!-- Hospital information will be displayed here -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        // Define your Google Places API key
+        const API_KEY = 'e03aa90f4fmsh40ad28003450a5ep1cc72djsn4e53fd9e9da0ERE';
+
+        // Function to find nearby hospitals
+        async function findNearbyHospitals(latitude, longitude) {
+            try {
+                const response = await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=5000&type=hospital&key=${API_KEY}`);
+                
+                // Extract relevant information from the response
+                const hospitals = response.data.results.map(result => {
+                    return {
+                        name: result.name,
+                        vicinity: result.vicinity,
+                        rating: result.rating || 'Not available',
+                        // You can add more information as per your requirement
+                    };
+                });
+
+                return hospitals;
+            } catch (error) {
+                console.error('Error finding nearby hospitals:', error.message);
+                return [];
+            }
+        }
+
+        // Function to display nearby hospitals
+        async function displayNearbyHospitals() {
+            const latitude = 37.7749; // Sample latitude
+            const longitude = -122.4194; // Sample longitude
+
+            const hospitalList = document.getElementById('hospitalList');
+
+            const hospitals = await findNearbyHospitals(latitude, longitude);
+
+            // Display hospitals in the HTML
+            hospitals.forEach(hospital => {
+                const hospitalInfo = document.createElement('div');
+                hospitalInfo.innerHTML = `
+                    <h3>${hospital.name}</h3>
+                    <p><strong>Address:</strong> ${hospital.vicinity}</p>
+                    <p><strong>Rating:</strong> ${hospital.rating}</p>
+                    <hr>
+                `;
+                hospitalList.appendChild(hospitalInfo);
+            });
+        }
+
+        // Call the function to display nearby hospitals when the page loads
+        window.onload = displayNearbyHospitals;
+    </script>
+</body>
+</html>
